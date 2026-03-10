@@ -108,6 +108,7 @@ with st.form("trip_form"):
     f"""
     <div style='margin-top: 12px; padding: 8px 12px; border: 1px solid #333; border-radius: 8px; background: #1e1e1e; box-shadow: 0 1px 3px rgba(0,0,0,0.3);'>
 
+
         <h4 style='margin-top: 0; margin-bottom: 6px;'>Trip {i+1}</h4>
     """,
     unsafe_allow_html=True
