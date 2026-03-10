@@ -105,12 +105,13 @@ with st.form("trip_form"):
 
     for i in range(st.session_state.rows):
         st.markdown(
-            f"""
-            <div style='margin-top: 20px; padding: 15px; border: 1px solid #444; border-radius: 8px;'>
-                <h4 style='margin-top: 0;'>Trip {i+1}</h4>
-            """,
-            unsafe_allow_html=True
-        )
+    f"""
+    <div style='margin-top: 12px; padding: 8px 12px; border: 1px solid #444; border-radius: 8px;'>
+        <h4 style='margin-top: 0; margin-bottom: 6px;'>Trip {i+1}</h4>
+    """,
+    unsafe_allow_html=True
+)
+
 
         col1, col2 = st.columns(2)
 
