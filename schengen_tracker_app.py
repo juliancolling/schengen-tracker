@@ -137,3 +137,12 @@ if submitted:
             safe_last_day = breach - timedelta(days=1)
             st.write(f"If you entered/stayed continuously from **{reference_date}**, your last legal day would be **{safe_last_day}**.")
             st.write(f"You would exceed the limit on **{breach}**.")
+st.markdown(
+    """
+    <div style='text-align: center; margin-top: 40px; padding-top: 20px; 
+                color: #888; font-size: 0.85rem; border-top: 1px solid #444;'>
+        © 2026 New Image Designs
+    </div>
+    """,
+    unsafe_allow_html=True
+)
