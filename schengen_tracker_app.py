@@ -104,14 +104,14 @@ with st.form("trip_form"):
     )
 
     for i in range(st.session_state.rows):
-    st.markdown(
-    f"""
+
+        st.markdown(
+            f"""
 <div style='margin-top: 12px; padding: 8px 12px; border: 1px solid #333; border-radius: 8px; background: #1e1e1e; box-shadow: 0 1px 3px rgba(0,0,0,0.3);'>
-    <h4 style='margin: 0 0 6px 0;'>Trip {i+1}</h4>
+    <h4 style='margin: 0 0 6px 0;'>🧳 Trip {i+1}</h4>
 """,
-    unsafe_allow_html=True
-
-
+            unsafe_allow_html=True
+        )
 
         col1, col2 = st.columns(2)
 
@@ -160,7 +160,12 @@ if submitted:
             unsafe_allow_html=True
         )
 
-        st.success(f"Days used in the last 180 days: {used_days}")
+        # Progress bar: days used vs max
+        st.markdown("**Schengen usage over last 180 days**")
+        progress_ratio = min(max(used_days / MAX_DAYS, 0), 1)
+        st.progress(progress_ratio)
+        st.write(f"Used: **{used_days}** / {MAX_DAYS} days")
+
         st.write(f"Days remaining: **{remaining_days}**")
 
         if remaining_days < 0:
@@ -171,6 +176,18 @@ if submitted:
             st.info(f"You can still spend {remaining_days} day(s) in Schengen on {reference_date}.")
 
         sorted_trips = sorted(trips, key=lambda x: x[0])
+
+        # Timeline visual
+        st.markdown("---")
+        st.markdown("### 🗓 Trip timeline (sorted by entry date)")
+        if sorted_trips:
+            for idx, (entry, exit_) in enumerate(sorted_trips, start=1):
+                duration = (exit_ - entry).days + 1
+                st.markdown(
+                    f"- **Trip {idx}**: {entry} → {exit_} &nbsp;&nbsp;({duration} days)"
+                )
+        else:
+            st.write("No trips to display.")
 
         with st.expander("See trip summary"):
             for idx, (entry, exit_) in enumerate(sorted_trips, start=1):
