@@ -92,12 +92,14 @@ with st.form("trip_form"):
                 f"Entry date {i+1}",
                 key=f"entry_{i}",
                 value=date.today() - timedelta(days=7) if i == 0 else date.today(),
+                format="DD/MM/YYYY"
             )
         with c2:
             exit_ = st.date_input(
                 f"Exit date {i+1}",
                 key=f"exit_{i}",
                 value=date.today() if i == 0 else date.today(),
+                format="DD/MM/YYYY"
             )
         trips.append((entry, exit_))
 
